@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+        <div class="video-content">
+            <h1 style="padding-top:20px; text-align:center;font-size:2rem;">{{page.title}}</h1>
+            {% for pl in site.data.video_playlists%}
+            {% if pl.name == page.title %}
+            <div class="iframe-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list={{pl.id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            {% endif%}
+            {% endfor %}
+        </div>
+        
+        <div class="video-footer">
+            {% include share-horizontal.html %}
+            <div class="row video-carousel">
+            {% for pl in site.data.video_playlists %}
+                <div class="col-md-3">
+                    <a href="/videos/{{pl.url}}">
+                        <img src="//img.youtube.com/vi/{{pl.videos[0].id}}/0.jpg" 
+                            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+                            alt="{{pl.name}}" 
+                            width=200px>
+                        <div class="content">
+                            <div class="text">{{pl.name}}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+
+            {% if page.comments %}
+            <section class="fb" id="fb">
+            <div class="fb-comments" data-href="{{site.url}}{{page.url}}" data-numposts="10" data-width="100%"></div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
+
+<style>
+      .content {
+        opacity:0;
+        font-size: 2rem;
+        position:absolute;
+        top:0;
+        left:23px;
+        color:#1c87c9;
+        background-color:rgba(6, 6, 6, 0.75);
+        width:200px;
+        height:150px;
+        -webkit-transition: all 400ms ease-out;
+        -moz-transition: all 400ms ease-out;
+        -o-transition: all 400ms ease-out;
+        -ms-transition: all 400ms ease-out;
+        transition: all 400ms ease-out;
+        text-align:center;
+      }
+      @media only screen and (max-width: 770px) {
+        .content {
+            opacity:1;
+            background-color: transparent;
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            -ms-transition: none;
+            transition: none;
+            top:58px;
+            left:0px;
+        }
+      }
+      .video-carousel .content:hover { opacity:1; }  
+
+      .video-carousel .content .text {
+        height:0;
+        opacity:1;
+        transition-delay: 0s;
+        transition-duration: 0.4s;
+      }
+      .video-carousel .content:hover .text {
+        opacity:1;
+        transform: translateY(100px);
+        -webkit-transform: translateY(100px);
+      }
+</style>

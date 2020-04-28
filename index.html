@@ -1,0 +1,97 @@
+---
+layout: default
+pagination:
+  enabled: true
+  permalink: '/:num/'
+---
+
+<div class="row">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-8">
+    <ul class="post-list">
+      {% for post in paginator.posts %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        <section class="post-excerpt" itemprop="description">
+          <p>{{ post.content | strip_html | truncatewords: 100 }}</p>
+        </section>
+        <section class="post-meta">
+          <div class="post-date">{{ post.published }}</div>
+          <div class="post-categories">
+          {% if post.categories.size > 0 %}in {% for cat in post.categories %}
+            {% if site.jekyll-archives %}
+            <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+            {% else %}
+            <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+            {% endif %}
+          {% endfor %}{% endif %}
+          </div>
+        </section>
+      </li>
+      {% if forloop.last == false %}
+      <hr>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
+
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination d-flex justify-content-center">
+        <div class="nextPrev">
+          {% if paginator.previous_page %}
+          <!-- <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a> -->
+          <a class="newer-posts" href="{{ paginator.previous_page_path | relative_url }}">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+          {% else %}
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
+            </span>
+          {% endif %}
+        </div>
+    
+        {% for trail in paginator.page_trail %}
+          {% if trail.num == paginator.page %}
+            <div class="paginate-number">
+              <button class="btn btn-outline-secondary" disabled title="{{trail.title}}">{{ trail.num }}</a>
+            </div>  
+          {% else %}
+            <div class="paginate-number">
+                <a class="btn btn-outline-primary" href="{{ trail.path | prepend: site.baseurl }}" title="{{trail.title}}">{{ trail.num }}</a>
+            </div>
+          {% endif %}
+        {% endfor %}
+    
+        <div class="nextPrev">
+          {% if paginator.next_page %}
+          <a class="newer-posts" href="{{ paginator.next_page_path | relative_url }}">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        {% else %}
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
+          </span>
+        {% endif %}
+        </div>
+      </div>
+      {% endif %}
+  
+  <div class="col-md-1">
+
+  </div>
+
+</div>
+
+</div>

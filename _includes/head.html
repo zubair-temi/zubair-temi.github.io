@@ -1,0 +1,95 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- add description and keywords for SEO -->
+  {% seo %}
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.keywords %}
+ <meta name="keywords" content="{{ page.keywords }}" />
+  {% else %}
+ <meta name="keywords" content="Saqib Ahmed, saqibahmed515, saqib-ahmed, saqibahmed, jekyll, blog, seo, github pages, rust, competetive programming, open source, software development, introduction, tutorial, beginners, dummies, containers, linux, docker, kubernetes, containers, system programming, computers, github" />
+ {% endif %}
+  {% if site.name %}
+  <meta name="author" content="{{ site.name }}">
+  <meta name="copyright" content="&copy; {{ site.name }} {{ site.time | date: '%Y' }}">
+  {% endif %}
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ site.url }}/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ site.url }}/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ site.url }}/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ site.url }}/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ site.url }}/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ site.url }}/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ site.url }}/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ site.url }}/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{{ site.url }}/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ site.url }}/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="{{ site.url }}/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{{ site.url }}/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  {% if site.protocols.fb_image %}
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:url" content="{{ page.url | prepend: site.url }}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+  <meta property="og:type" content="website" />
+  {% if page.header-img %}
+    <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}" />
+  {% else %}
+    <meta property="og:image" content="{% if page.cover %}{{ page.cover | prepend: "/covers/" | prepend: site.baseurl | prepend: site.url }}{% else %}{{ site.protocols.fb_image | prepend: site.baseurl | prepend: site.url }}{% endif %}" />
+    <meta property="og:image:type" content="{{ site.protocols.fb_image_type }}" />
+    <meta property="og:image:width" content="{{ site.protocols.fb_image_width }}" />
+    <meta property="og:image:height" content="{{ site.protocols.fb_image_height }}" />
+  {% endif %}
+
+    {% if site.protocols.fb_app_id %}
+      <meta property="fb:app_id" content="{{ site.protocols.fb_app_id }}" />
+    {% endif %}
+  {% endif %}
+
+  {% if site.protocols.twitter_image %}
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  
+  {% if page.header-img %}
+    <meta property="twitter:image" content="{{ site.url }}/{{ page.header-img }}" />
+  {% else %}
+    <meta name="twitter:image" content="{% if page.cover %}{{ page.cover | prepend: "/covers/" | prepend: site.baseurl | prepend: site.url }}{% else %}{{ site.protocols.twitter_image | prepend: site.baseurl | prepend: site.url }}{% endif %}">
+  {% endif%}
+  <meta name="twitter:url" content="{{ site.url }}">
+  {% endif %}
+
+  {% if protocols.os_repo and protocols.os_rcs_type and protocols.os_src %}
+  <!-- Open Source Protocol -->
+  <link rel="profile" href="http://osprotocol.com" />
+  <meta property="os:repo" content="{{ protocols.os_repo }}" />
+  <meta property="os:rcs_type" content="{{ protocols.os_rcs_type }}" />
+  <meta property="os:src" content="{{ protocols.os_src }}" />
+  {% endif %}
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="{{ "/assets/main.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/assets/navbar.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+  <!-- JQuery/Bootstrap Support -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js" integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k" crossorigin="anonymous"></script>
+</head>

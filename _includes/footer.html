@@ -1,0 +1,119 @@
+<footer class="site-footer">
+
+  <div class="d-md-flex flex-md-row justify-content-md-around">
+    <div class="col-md-2" >
+      <ul class="footer-lists">
+          <li>
+            <div class="row">
+              <div class="col-1" style="align-self: center; font-size: 25px;">
+                <i class="fas fa-book" style="color: #137007;"></i>
+              </div>
+              <div class="col-10">
+                <a class="footer-links nav-link btn btn-primary" href="/books" title="{{ social.desc }}" target="_blank">
+                  <span class="username">تصانیف</span> 
+                </a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-1" style="align-self: center; font-size: 25px;">
+                <i class="fab fa-youtube" style="color: #ff0100;"></i>
+              </div>
+              <div class="col-10">
+                <a class="footer-links nav-link btn btn-primary" href="/videos" title="{{ social.desc }}" target="_blank">
+                  <span class="username">ویڈیوز</span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-1" style="align-self: center; font-size: 25px;">
+                <i class="far fa-address-card" style="color: crimson;"></i>
+              </div>
+              <div class="col-10">
+                <a class="footer-links nav-link btn btn-primary" href="/about" title="{{ social.desc }}" target="_blank">
+                  <span class="username">تعارف</span>
+                </a>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <ul class="footer-lists">
+        <li>
+          <div class="row">
+            <div class="col-1" style="align-self: center; font-size: 25px; color: darkorchid;">
+              <i class="far fa-envelope"></i>
+            </div>
+            <div class="col-10">
+              <a class="footer-links nav-link btn btn-primary" href="mailto:{{ site.email }}">
+                <span class="username">{{ site.title }}</span>
+              </a>
+            </div>
+          </div>
+          
+        </li>
+
+        {% for social in site.social %}
+          {% if social.url != null %}
+          <li>
+            <div class="row">
+              <div class="col-1" style="align-self: center; font-size: 25px;">
+                <i class="{{ social.icon }}" style="{{social.icon-style}}"></i>
+              </div>
+              <div class="col-10">
+                <a class="footer-links nav-link btn btn-primary" href="{{ social.url }}" title="{{ social.desc }}" target="_blank">
+              
+                  <span class="username">{% if social.desc %}{{ social.desc }}{% else %}{{ social.name }}{% endif %}</span>
+                </a>
+              </div>
+            </div>
+          </li>
+          {% endif %}
+        {% endfor %}
+        
+
+      </ul>
+    </div>
+    <div class="col-md-2">
+      <ul class="footer-lists">
+        <li>
+          <div class="row">
+            <div class="col-1" style="align-self: center; color: goldenrod;">
+              <i class="fas fa-rss"></i>
+            </div>
+            <div class="col-10">
+              <a class="footer-links nav-link btn btn-primary" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+                <span class="username">آر ایس ایس فیڈ</span>
+              </a>
+            </div>
+          </div>
+          
+        </li>
+      </ul>
+      <p class="text">{{ site.description }}</p>
+      <br>
+    </div>
+  </div>
+  </div>
+
+</footer>
+
+
+{% if site.ga_tracking_id %}
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '{{ site.ga_tracking_id }}', 'auto');
+  ga('send', 'pageview', {
+    'page': '{{ page.url }}',
+    'title': '{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}'
+  });
+</script>
+{% endif %}

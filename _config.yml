@@ -1,0 +1,105 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: ڈاکٹرحافظ محمد زبیر
+email: mzubair@cuilahore.edu.pk
+description: >- # this means to ignore newlines until "baseurl:"
+  وقف
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate-v2
+  - jekyll-seo-tag
+
+inter_post_navigation: true
+
+pagination:
+  enabled: true
+  per_page: 5
+  sort_reverse: true
+  sort_field: 'date'
+  title: ':title'
+  trail:
+    before: 4
+    after: 4
+
+
+social:
+  - name: Facebook Page
+    icon: fab fa-facebook-square
+    icon-style: "color: #4267b2;"
+    username: drhafizmuhammadzubair
+    url: https://www.facebook.com/drhafizmuhammadzubair
+    desc: فیس بک پیج
+    share: true
+
+  - name: Facebook Personal
+    icon: fab fa-facebook-square
+    icon-style: "color: #4267b2;"
+    username: hm.zubair
+    url: https://www.facebook.com/hm.zubair
+    desc: فیس بک پروفائل
+    share: true
+
+  - name: Youtube
+    icon: fab fa-youtube
+    icon-style: "color: #ff0100;"
+    username: UCW1GshwUih0e6lfIpEqWAtQ
+    url: https://www.youtube.com/channel/UCW1GshwUih0e6lfIpEqWAtQ
+    desc: یوٹیوب چینل
+    share: true
+
+  - name: Kitab-o-sunnat
+    icon: fas fa-certificate
+    icon-style: "color: #fdd18e;"
+    username: muhammad-zubair-temi
+    url: https://kitabosunnat.com/musannifeen/muhammad-zubair-temi
+    desc: کتاب و سنت مصنف پروفائل
+    share: true
+
+  - name: Researchgate
+    icon: fab fa-researchgate
+    icon-style: "color: #00cdbb;"
+    username: Hafiz_Muhammad_Zubair
+    url: https://www.researchgate.net/profile/Hafiz_Muhammad_Zubair
+    desc: ریسرچ گیٹ پروفائل
+    share: true
+
+  - name: Twitter
+    icon: fab fa-twitter-square
+    icon-style: "color: #1da1f2;"
+    username: DrHMZubair
+    url: https://twitter.com/DrHMZubair
+    desc: ٹویٹر پروفائل
+    share: true
+
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - script.py

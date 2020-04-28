@@ -1,0 +1,91 @@
+---
+layout: default
+---
+<div class="post-header-container">
+      <h1 class="title">{{ page.title }}</h1>
+</div>
+<div id="overlay" style="position: fixed; display: none; left: 10%; text-align: center; z-index: 1;">
+  {% include share-vertical.html %}
+</div>
+<div class="row post">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-8">
+    <hr style="border-top: 5px solid #f3d082;border-radius:15px;"/>
+    <section class="post-meta">
+      <div class="post-date">{{ page.published }}</div>
+    </section>
+    <article class="post-content" id="post-content">
+      {{ content }}
+    </article>
+  </div>
+
+  <div class="col-md-1">
+
+  </div>
+</div>
+<div class="row post-footer">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-8">
+    {% include share-horizontal.html %}
+    {% if site.inter_post_navigation == true %}
+      <section class="post-navigation">
+        <span class="prev-post">
+          {% if page.previous.url %}
+            <a href="{{page.previous.url | prepend: site.baseurl}}">
+              <span class="page-number">{{page.previous.title}}</span>
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-square fa-stack-2x"></i>
+                <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          {% endif %}
+        </span>
+        <span class="next-post">
+          {% if page.next.url %}
+            <a href="{{page.next.url | prepend: site.baseurl}}">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-square fa-stack-2x"></i>
+                <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="page-number">{{page.next.title}}</span>
+            </a>
+          {% endif %}
+        </span>
+      </section>
+    {% endif %}
+    
+    {% if page.comments %}
+    <section class="fb" id="fb">
+      <div class="fb-comments" data-href="{{site.url}}{{page.url}}" data-numposts="10" data-width="100%"></div>
+    </section>
+    {% endif %}
+  </div>
+  <div class="col-md-1">
+
+  </div>
+</div>
+<script>
+  setTimeout(() => {
+    var postContent = $('#post-content') 
+    var start = postContent.offset().top - 100
+    var end = start + postContent.height() - 700
+    
+    let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+    console.log(isMobile)
+    if(!isMobile){
+      $(document).scroll(function() {
+      var y = $(this).scrollTop();
+      if (y < end) {
+        jQuery('#overlay').fadeIn();
+      } else {
+        jQuery('#overlay').fadeOut();
+      }
+    });
+    }
+  }, 500);
+
+</script>
